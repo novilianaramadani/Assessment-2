@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manajemen Izin</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+
+<script>
+$(document).ready(function(){
+    $.ajax({
+        url: 'get_data.php',
+        dataType: 'json',
+        success: function(data) {
+            $.each(data, function(index, item) {
+                var row = '<tr>' +
+                          '<td>' + item.id + '</td>' +
+                          '<td>' + item.nama_usaha + '</td>' +
+                          '<td>' + item.alamat + '</td>' +
+                          '<td>' + item.jenis_usaha + '</td>' +
+                          '<td>' + item.status_izin + '</td>'+
+                          '</tr>';
+                $('#table-data tbody').append(row);
+            });
+        },
+        error: function() {
+            alert('Gagal memuat data.');
+        }
+    });
+});
+
+
+</script>
+</body>
+</html>

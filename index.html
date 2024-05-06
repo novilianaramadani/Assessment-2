@@ -35,6 +35,7 @@ $(document).ready(function(){
                           '<td>' + item.alamat + '</td>' +
                           '<td>' + item.jenis_usaha + '</td>' +
                           '<td>' + item.status_izin + '</td>'+
+                          '<td><button onclick="hapusData(' + item.id + ')">Hapus</button></td>'+
                           '</tr>';
                 $('#table-data tbody').append(row);
             });
@@ -45,6 +46,19 @@ $(document).ready(function(){
     });
 });
 
+function hapusData(id) {
+    $.ajax({
+        url: 'hapus_data.php?id=' + id,
+        type: 'GET',
+        success: function(response) {
+            alert('Data berhasil dihapus.');
+            location.reload(); // Refresh halaman setelah hapus data
+        },
+        error: function() {
+            alert('Gagal menghapus data.');
+        }
+    });
+}
 
 </script>
 </body>
